@@ -125,14 +125,26 @@ Second str: world
 
 ## Run function
 
-เราสามารถสั่ง function อะไรก็ได้ที่เราต้องการได้ระหว่าง GDB อยู่ครับ
+เราสามารถสั่ง function อะไรก็ได้ที่เราต้องการได้ระหว่าง GDB อยู่ครับ (แต่ function ต้องถูกอ่าน define มาก่อนแล้ว) อย่างตัวอย่างผมอยู่ที่ main ยังไม่ทันรับ input จริงๆ ผมก็สั่ง split เพื่อดูผลลัพธ์ได้เลย  
 
 ```
-(gdb) call system("/bin/bash")
-bankde@ubuntu:~/Desktop/tmp$ ls
-core  example.c  example.o
-bankde@ubuntu:~/Desktop/tmp$ exit
-exit
-$37 = 0
-(gdb)
+Breakpoint 1, main () at example.c:37
+37	    if (getInputAndRun() == -1) break;
+(gdb) call split("test bank")
+$1 = (char **) 0x555555756260
+(gdb) p ((char**)0x555555756260)[0]
+$2 = 0x7ffff7fe1f20 "test"
+(gdb) p ((char**)0x555555756260)[1]
+$3 = 0x7ffff7fe1f25 "bank"
+```
+
+หรือใช้ `p` แทน `call` ก็ได้ครับ แล้วเปลี่ยน memory address เป็นเลขตัวแปรแทนก็ได้เช่นกัน  
+
+```
+(gdb) p split("hello bonk")
+$4 = (char **) 0x5555557562c0
+(gdb) p ((char**)$4)[0]
+$7 = 0x7ffff7fe1f30 "hello"
+(gdb) p ((char**)$4)[1]
+$8 = 0x7ffff7fe1f36 "bonk"
 ```
