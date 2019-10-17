@@ -17,7 +17,8 @@ brew install gcc gdb
 จากนั้นก็ clone repo [GDBTutorial][GDBTutorial-repo] นี้ แล้ว compile executable สำหรับรันบนเครื่องครับ  
 
 ```
-git clone
+git clone https://github.com/Bankde/GDBTutorial.git
+cd GDBTutorial
 gcc example.c -o example.o -g
 ```
 
