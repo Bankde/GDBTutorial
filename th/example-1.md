@@ -85,4 +85,8 @@ First str: Test
 Second str: (null)
 Put string to split: a
 First str: A
+
+Put string to split: hello world
+First str: Hello
+Second str: World
 ```
