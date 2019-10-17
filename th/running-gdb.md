@@ -63,9 +63,9 @@ Delete all breakpoints? (y or n) y
 3. stepi - ทำงานทีละบรรทัดของ assembly code (machine code) เข้าไปใน function ที่เจอด้วย ย่อด้วย `si`
 4. nexti - เหมือน stepi แต่ไม่เข้า function ย่อด้วย `ni`
 
-นอกจากนี้มีคำสั่งอื่นๆอีกครับ
-1. continue - ย่อด้วย `c` คือให้มันทำงานต่อ จนจบ หรือจนเจอ breakpoint ใหม่
-2. finish - ทำงานจนจบ function แล้วหยุด
+นอกจากนี้มีคำสั่งอื่นๆอีกครับ  
+1. continue - ย่อด้วย `c` คือให้มันทำงานต่อ จนจบ หรือจนเจอ breakpoint ใหม่  
+2. finish - ทำงานจนจบ function แล้วหยุด  
 3. until <location> - ทำจนถึงบรรทัดที่ระบุ ให้อารมณ์คล้ายๆ temporary breakpoint  
 
 ส่วนเวลากด enter ใน GDB โดยไม่ได้ระบุคำสั่งอะไร จะแปลว่าให้รันคำสั่งก่อนหน้าอีกครั้งหนึง จึงไม่ต้องพิมพ์ next next next บ่อยๆนะครับ enter รัวๆได้เลย
