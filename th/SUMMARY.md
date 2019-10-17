@@ -8,3 +8,4 @@
 * [Changing Program Flow](changing-program-flow.md)
 * [Automating Debug](automate-debug.md)
 * [Example 1: Test the Patch](example-1.md)
+* [More configuration](settings.md)
