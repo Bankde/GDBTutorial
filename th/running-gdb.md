@@ -2,17 +2,16 @@
 
 ต่อมา GDB มันไม่ใช่แค่อ่าน coredump ที่ตายแล้วอย่างเดียว เราสามารถรันโปรแกรมของเราบน GDB ได้เลย ซึ่งลักษณะมันจะออกมาคล้ายๆโปรแกรม IDE ที่กดหยุดได้ สั่งเลื่อนที่ละบรรทัด ดูตัวแปร อะไรแบบนี้ได้หมดเลย ต่างกันแค่ว่ามันเปลี่ยนจาก GUI กดๆ มาเป็น commandline เท่านั้นเอง จริงๆแล้วมันทำอะไรได้เยอะกว่า GUI มาก ถ้าเราใช้ commandline เป็นครับ  
 
-การใช้ GDB เพื่อรันโปรแกรม ทำได้ 2 แบบครับ คือ
-1. เริ่มต้น run ด้วย GDB เลย
+การใช้ GDB เพื่อรันโปรแกรม ทำได้ 2 แบบครับ คือ  
+
+1. เริ่มต้น run ด้วย GDB เลย `gdb ./<executable>`
 ```
-gdb ./<executable>
 $ gdb ./example.o
 Reading symbols from ./example.o...done.
 (gdb)
 ```
-2. เอา GDB ไปเสียบ program ที่รันอยู่แล้วก็ได้ครับ (อาจจะต้องใช้ sudo เพราะเรื่อง security ของ Linux version ใหม่ๆ)
+2. เอา GDB ไปเสียบ program ที่รันอยู่แล้วก็ได้ครับ (อาจจะต้องใช้ sudo เพราะเรื่อง security ของ Linux version ใหม่ๆ) `sudo gdb ./<executable> -p <pid_of_running_prog>`
 ```
-sudo gdb ./<executable> -p <pid_of_running_prog>
 $ sudo gdb ./example.o -p 18805
 0x00007f123f97e081 in __GI___libc_read (fd=0, buf=0x55e5136ed670, nbytes=1024)
     at ../sysdeps/unix/sysv/linux/read.c:27
