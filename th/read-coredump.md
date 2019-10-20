@@ -1,6 +1,6 @@
-# Get Started
+# Reading Coredump
 
-โดยปกติเรา การอ่าน coredump เป็นพื้นฐานที่ง่ายที่สุดครับ เพราะเป็นการอ่านสิ่งที่ตายแล้ว ไม่ต้องขยับอะไรทั้งนั้น เราก็จะมาเริ่มใช้ GDB ที่อันนี้ก่อน เพื่อเข้าใจว่าอ่านค่าอะไรยังไงบ้าง  
+โดยปกติการอ่าน coredump เป็นพื้นฐานที่ง่ายที่สุดครับ เพราะเป็นการอ่านสิ่งที่ตายแล้ว ไม่ต้องขยับอะไรทั้งนั้น เราก็จะมาเริ่มใช้ GDB ที่อันนี้ก่อน เพื่อเข้าใจว่าอ่านค่าอะไรยังไงบ้าง  
 
 ถ้าเริ่มทำตามผมตั้งแต่ preparation จะได้ coredump มาแล้ว ก็เริ่มจากเอา GDB เข้าไปอ่าน core ให้ใช้คำสั่งตามนี้ครับ `gdb ./<executable> <core_of_executable>`
 
@@ -80,6 +80,25 @@ Program terminated with signal SIGSEGV, Segmentation fault.
 37	    if (getInputAndRun() == -1) break;
 38	  }
 39	  return 0;
+```
+
+นอกจาก list ที่เป็น source code ภาษา c แล้ว เรายังสามารถอ่านเป็นภาษา assembly ได้ด้วย อันนี้แล้วแต่ที่ถนัดเลยครับ ถ้า compile พร้อม debug flag (-g) แทบไม่ต้องลง assembly เลย แต่หลายครั้งการลงไปดู assembly ก็ทำให้เราเห็นรายละเอียดอะไรเยอะกว่าเช่นกัน  
+
+```
+(gdb) disassemble main
+Dump of assembler code for function main:
+   0x0000555555554a11 <+0>:	push   %rbp
+   0x0000555555554a12 <+1>:	mov    %rsp,%rbp
+=> 0x0000555555554a15 <+4>:	mov    $0x0,%eax
+   0x0000555555554a1a <+9>:	callq  0x555555554905 <getInputAndRun>
+   0x0000555555554a1f <+14>:	cmp    $0xffffffff,%eax
+   0x0000555555554a22 <+17>:	je     0x555555554a26 <main+21>
+   0x0000555555554a24 <+19>:	jmp    0x555555554a15 <main+4>
+   0x0000555555554a26 <+21>:	nop
+   0x0000555555554a27 <+22>:	mov    $0x0,%eax
+   0x0000555555554a2c <+27>:	pop    %rbp
+   0x0000555555554a2d <+28>:	retq   
+End of assembler dump.
 ```
 
 เนื่องจาก stack ของ main ไม่มีอะไรให้เราดู เราจะดู stack getInputAndRun() กันนะครับ เริ่มจากอ่านตัวแปรต่างๆ ด้วย `p <variable_name>` หรือ `x/<type> <variable_or_address>` อาจจะงงๆ มาดูตัวอย่างเลยดีกว่า
